@@ -1,5 +1,6 @@
-
 import React from 'react';
+import { Link } from 'react-router-dom'; // Using Link for navigation
+import './css-components/Sidebar.css'; // Custom CSS for Sidebar
 
 const Sidebar = ({ role }) => {
   const menuItems = {
@@ -9,14 +10,17 @@ const Sidebar = ({ role }) => {
   };
 
   return (
-    <aside className="bg-gray-200 w-64 h-screen p-4">
-      <h2 className="font-bold text-lg">{role} Menu</h2>
-      <ul className="mt-4">
-        {menuItems[role].map((item, index) => (
-          <li key={index} className="mb-2">
-            <a href={`/${role.toLowerCase()}/${item.toLowerCase().replace(' ', '-')}`} className="hover:text-blue-500">
+    <aside className="sidebar-container">
+      <h2 className="sidebar-title">{role} Menu</h2>
+      <ul className="sidebar-menu">
+        {menuItems[role.toLowerCase()].map((item, index) => (
+          <li key={index} className="sidebar-item">
+            <Link 
+              to={`/${role.toLowerCase()}/${item.toLowerCase().replace(' ', '-')}`} 
+              className="sidebar-link"
+            >
               {item}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

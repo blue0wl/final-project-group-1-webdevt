@@ -1,0 +1,46 @@
+.librarian-dashboard-container {
+    display: flex;
+  }
+  
+  .librarian-dashboard-content {
+    flex-grow: 1;
+    padding: 30px;
+    background: #ffffff; /* White background for the main content to differentiate */
+    color: #333333; /* Darker text for readability */
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  }
+  
+  .librarian-dashboard-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #6a11cb; /* Primary color for title */
+  }
+  
+  .librarian-dashboard-description {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: #2575fc; /* Secondary color for description */
+  }
+  
+  .librarian-dashboard-actions {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .librarian-dashboard-btn {
+    background: #2575fc; /* Secondary color for the buttons */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .librarian-dashboard-btn:hover {
+    background: #6a11cb; /* Hover color with a darker shade for buttons */
+    transform: scale(1.05);
+  }
+  
