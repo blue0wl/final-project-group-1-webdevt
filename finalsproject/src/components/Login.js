@@ -11,13 +11,12 @@ const Login = () => {
         <h1 className="title">Library Management System</h1>
         <p className="subtitle">Choose your role to continue</p>
         <div className="links-container">
+          {/* Main Role Buttons */}
           <button className="login-link" onClick={() => navigate('/admin-login')}>Admin</button>
           <button className="login-link" onClick={() => navigate('/librarian-login')}>Librarian</button>
           <button className="login-link" onClick={() => navigate('/borrower-login')}>Borrower</button>
-          {/* For testing direct dashboard navigation */}
-          <button className="login-link" onClick={() => navigate('/admin-dashboard')}>Admin Dashboard</button>
-          <button className="login-link" onClick={() => navigate('/librarian-dashboard')}>Librarian Dashboard</button>
-          <button className="login-link" onClick={() => navigate('/borrower-dashboard')}>Borrower Dashboard</button>
+          {/* TEMPORARY webpage testing */}
+          <button className="login-link" onClick={() => navigate('/user-list')}>User List</button>
         </div>
       </div>
     </div>
