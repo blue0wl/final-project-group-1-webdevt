@@ -2,19 +2,23 @@ import './css-components/UpdateUser.css';
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function UpdateUser({ userList, setUserList }) {
+function LowerAdminUpdate({ userList, setUserList }) {
     const location = useLocation();
     const navigate = useNavigate();
-
-    const { email } = location.state || {}; // Get the email from state
-    const [userData, setUserData] = useState({ name: '', email: '', password: '', image: '', role: '' });
+    const user = location.state || {};  
+    console.log("Location state:", location.state); 
+    
+    const [userData, setUserData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        image: '',
+        role: ''
+    });
     const [notification, setNotification] = useState('');
 
     useEffect(() => {
-        // Find the user by email
-        const user = userList.find(user => user.email === email);
-        if (user) {
-            // If user exists, pre-fill the form with the user's data
+        if (user && user.email) {
             setUserData({
                 name: user.name,
                 email: user.email,
@@ -25,42 +29,49 @@ function UpdateUser({ userList, setUserList }) {
         } else {
             setNotification("User not found.");
         }
-    }, [email, userList]);
+    }, [user]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setUserData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const validatePassword = (password) => {
-        return password.length >= 6; 
+    const validateInputs = () => {
+        if (!userData.name || userData.name.trim() === "") {
+            return "Name is required.";
+        }
+        if (!userData.password || userData.password.length < 6) {
+            return "Password must be at least 6 characters.";
+        }
+        return null; 
     };
 
     const handleSubmit = () => {
-        if (!userData.name.trim() || !userData.password.trim()) {
-            alert("Please fill out all fields correctly.");
+        const validationError = validateInputs();
+        if (validationError) {
+            setNotification(validationError);
             return;
         }
 
-        if (!validatePassword(userData.password)) {
-            alert("Password must be at least 6 characters long.");
-            return;
-        }
-
-        const updatedUserList = userList.map((user) =>
-            user.email === email ? { ...user, ...userData } : user
+        const updatedUserList = userList.map((existingUser) =>
+            existingUser.email === userData.email ? { ...existingUser, ...userData } : existingUser
         );
         setUserList(updatedUserList);
+        
+        // Update the state to reflect the new user data
         setNotification(`User "${userData.name}" has been updated successfully!`);
+
+        // Pass updated user data back to Profile page
+        navigate("/admin/dashboard", { state: { ...userData } });
     };
 
     const handleBack = () => {
-        navigate(-1); 
+        navigate(-1);  
     };
 
     useEffect(() => {
         if (notification) {
-            const timer = setTimeout(() => setNotification(""), 5000); 
+            const timer = setTimeout(() => setNotification(""), 5000);
             return () => clearTimeout(timer);
         }
     }, [notification]);
@@ -86,8 +97,7 @@ function UpdateUser({ userList, setUserList }) {
                     name="email"
                     className="form-control"
                     value={userData.email}
-                    onChange={handleInputChange}
-                    disabled
+                    disabled  
                 />
             </div>
             <div className="form-group">
@@ -117,6 +127,7 @@ function UpdateUser({ userList, setUserList }) {
                     className="form-control"
                     value={userData.role}
                     onChange={handleInputChange}
+                    disabled  
                 >
                     <option value="Admin">Admin</option>
                     <option value="Librarian">Librarian</option>
@@ -135,4 +146,4 @@ function UpdateUser({ userList, setUserList }) {
     );
 }
 
-export default UpdateUser;
+export default LowerAdminUpdate;

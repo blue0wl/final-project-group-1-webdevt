@@ -6,10 +6,9 @@ function UserList({ userList, setUserList }) {
     const [notification, setNotification] = useState("");
     const navigate = useNavigate();
 
-    // Clear the notification message after a few seconds
     useEffect(() => {
         if (notification) {
-            const timer = setTimeout(() => setNotification(""), 5000); // Clear after 5 seconds
+            const timer = setTimeout(() => setNotification(""), 5000); 
             return () => clearTimeout(timer);
         }
     }, [notification]);
@@ -26,15 +25,16 @@ function UserList({ userList, setUserList }) {
         const confirmDelete = window.confirm("Are you sure you want to delete this user?");
         if (confirmDelete) {
             setUserList((prevList) => prevList.filter((user) => user.email !== email));
-            setNotification("User has been successfully deleted!"); // Show notification on delete
+            setNotification("User has been successfully deleted!"); 
         }
     };
 
     const handleBack = () => {
-        navigate(-1); // Navigates to the previous page
+        navigate(-1); 
     };
 
     return (
+        <div className="user-list-background">
         <div className="user-list-container">
             <h2>User List</h2>
             <div className="action-bar">
@@ -83,10 +83,11 @@ function UserList({ userList, setUserList }) {
                     ))}
                 </tbody>
             </table>
-            {notification && <p className="notification">{notification}</p>} {/* Display notification */}
+            {notification && <p className="notification">{notification}</p>}
             <button className="btn btn-secondary back-button" onClick={handleBack}>
                 Back
             </button>
+        </div>
         </div>
     );
 }

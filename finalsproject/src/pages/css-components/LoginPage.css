@@ -1,3 +1,11 @@
+.login-page-background {
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(to right, #6a0080, #003ba0); 
+    min-height: 100vh; 
+    color: #ffffff; 
+}
+
 .login-page-container {
     max-width: 400px;
     margin: 50px auto;

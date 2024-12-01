@@ -14,8 +14,8 @@ const LibrarianDashboard = () => {
     }
 
     return (
-        <div className={`dashboard-container ${role.toLowerCase()}`}>
-            <Sidebar role={role} />
+        <div className={`dashboard-container`}>
+            <Sidebar role={role} user={location.state}/>
             <main className="dashboard-content">
                 <header>
                     <h1 className="dashboard-title">{role} Dashboard</h1>
@@ -23,11 +23,6 @@ const LibrarianDashboard = () => {
                 </header>
                 <section className="dashboard-description">
                     <p>From here, you can manage books, reservations, and returns.</p>
-                </section>
-                <section className="dashboard-actions">
-                    <button className="dashboard-btn">Manage Books</button>
-                    <button className="dashboard-btn">Reservations</button>
-                    <button className="dashboard-btn">Returns</button>
                 </section>
             </main>
         </div>

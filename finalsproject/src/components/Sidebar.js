@@ -8,9 +8,9 @@ const Sidebar = ({ role, user }) => {
   const normalizedRole = role?.toLowerCase();
   
   const menuItems = {
-    admin: ['Dashboard', 'Manage Users', 'Reports'],
-    librarian: ['Dashboard', 'Manage Books', 'Reservations', 'Returns'],
-    borrower: ['Dashboard', 'Search Books', 'Borrowing Logs'],
+    admin: ['Dashboard', 'Profile', 'Manage Users', 'Reports'],
+    librarian: ['Dashboard', 'Profile', 'Manage Books', 'Reservations', 'Returns'],
+    borrower: ['Dashboard', 'Profile', 'Search Books', 'Borrowing Logs'],
   };
 
   // Handle case where the role does not match any key
@@ -23,7 +23,6 @@ const Sidebar = ({ role, user }) => {
     );
   }
 
-  // Logout function to clear session and redirect to home page
   const handleLogout = () => {
     navigate("/"); 
   };

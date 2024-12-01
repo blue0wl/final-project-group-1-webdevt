@@ -1,3 +1,11 @@
+.user-list-background {
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(to right, #6a0080, #003ba0); 
+  min-height: 100vh; 
+  color: #ffffff; 
+}
+
 .user-list-container {
   max-width: 800px;
   margin: 50px auto;

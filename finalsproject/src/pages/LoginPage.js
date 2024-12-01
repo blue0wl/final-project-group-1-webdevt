@@ -36,6 +36,7 @@ function LoginPage({ role, dashboardPath, userList }) {
     console.log("Location state:", location.state); 
     
     return (
+        <div className="login-page-background">
         <div className="login-page-container">
             <h2>{role} Login</h2>
             <div className="form-group">
@@ -69,6 +70,7 @@ function LoginPage({ role, dashboardPath, userList }) {
                 </button>
             </div>
             {error && <p className="error-message">{error}</p>}
+        </div>
         </div>
     );
 }

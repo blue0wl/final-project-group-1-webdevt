@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function CreateUser({ userList, setUserList }) {
-    const [newUser, setNewUser] = useState({ name: "", email: "", password: "", image: "", role: "Admin" });
+    const [newUser, setNewUser] = useState({ name: "", email: "", password: "", image: "", role: "Borrower" });
     const [notification, setNotification] = useState("");
     const navigate = useNavigate();
 
@@ -17,14 +17,23 @@ function CreateUser({ userList, setUserList }) {
         return emailRegex.test(email);
     };
 
+    const validatePassword = (password) => {
+        return password.length >= 6; // Password must be 6 or more characters
+    };
+
     const handleSubmit = () => {
-        if (!newUser.name.trim() || !newUser.email.trim() || !newUser.password.trim() || !newUser.image.trim()) {
+        if (!newUser.name.trim() || !newUser.email.trim() || !newUser.password.trim()) {
             alert("Please fill out all fields correctly.");
             return;
         }
 
         if (!validateEmail(newUser.email)) {
             alert("Please enter a valid email address.");
+            return;
+        }
+
+        if (!validatePassword(newUser.password)) {
+            alert("Password must be at least 6 characters long.");
             return;
         }
 
@@ -41,10 +50,10 @@ function CreateUser({ userList, setUserList }) {
 
     // Clear the notification message after a few seconds
     useEffect(() => {
-      if (notification) {
-        const timer = setTimeout(() => setNotification(""), 5000); // Clear after 5 seconds
-        return () => clearTimeout(timer);
-      }
+        if (notification) {
+            const timer = setTimeout(() => setNotification(""), 5000); 
+            return () => clearTimeout(timer);
+        }
     }, [notification]);
 
     const handleBack = () => {
@@ -52,6 +61,7 @@ function CreateUser({ userList, setUserList }) {
     };
 
     return (
+        <div className='create-user-background'>
         <div className="create-user-container">
             <h2>Register User</h2>
             <div className="form-group">
@@ -118,6 +128,7 @@ function CreateUser({ userList, setUserList }) {
             <button className="btn btn-secondary back-button" onClick={handleBack}>
                 Back
             </button>
+        </div>
         </div>
     );
 }

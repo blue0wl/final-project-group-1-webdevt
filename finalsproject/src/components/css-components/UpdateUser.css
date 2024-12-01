@@ -1,3 +1,11 @@
+.update-user-background {
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(to right, #6a0080, #003ba0); 
+  min-height: 100vh; 
+  color: #ffffff; 
+}
+
 .update-user-container {
     max-width: 600px;
     margin: 20px auto;

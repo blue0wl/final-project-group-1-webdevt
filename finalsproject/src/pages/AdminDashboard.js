@@ -14,7 +14,7 @@ const LibrarianDashboard = () => {
     }
 
     return (
-        <div className={`dashboard-container ${role.toLowerCase()}`}>
+        <div className={`dashboard-container`}>
             <Sidebar role={role} user={location.state} />
             <main className="dashboard-content">
                 <header>

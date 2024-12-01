@@ -3,17 +3,17 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(to right, #6a11cb, #2575fc); /* Gradient background */
+  background: linear-gradient(to right, #6a11cb, #2575fc); /*or this: to right, #6a0080, #003ba0*/
   color: white;
   font-family: 'Arial', sans-serif;
   text-align: center;
 }
 
 .login-content {
-  background: rgba(255, 255, 255, 0.1); /* Subtle transparency effect */
+  background: rgba(255, 255, 255, 0.1);
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
 }
 
 .title {
