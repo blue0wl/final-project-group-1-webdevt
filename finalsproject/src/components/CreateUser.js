@@ -1,34 +1,54 @@
-import React, { useState } from 'react';
+import './css-components/CreateUser.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function CreateUser({ userList, setUserList }) {
-    const [newUser, setNewUser] = useState({ name: '', email: '', password: '', image: '', role: 'Admin' });
-    const [notification, setNotification] = useState('');
+    const [newUser, setNewUser] = useState({ name: "", email: "", password: "", image: "", role: "Admin" });
+    const [notification, setNotification] = useState("");
+    const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setNewUser((prev) => ({ ...prev, [name]: value }));
     };
 
+    const validateEmail = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email regex
+        return emailRegex.test(email);
+    };
+
     const handleSubmit = () => {
-        if (
-            newUser.name.trim() &&
-            newUser.email.trim() &&
-            newUser.password.trim() &&
-            newUser.image.trim()
-        ) {
-            const isDuplicateEmail = userList.some((user) => user.email === newUser.email);
-
-            if (isDuplicateEmail) {
-                alert('This email is already registered. Please use a unique email.');
-                return;
-            }
-
-            setUserList((prev) => [...prev, newUser]);
-            setNotification(`User "${newUser.name}" has been successfully registered!`);
-            setNewUser({ name: '', email: '', password: '', image: '', role: 'Admin' }); // Reset fields
-        } else {
-            alert('Please fill out all fields correctly.');
+        if (!newUser.name.trim() || !newUser.email.trim() || !newUser.password.trim() || !newUser.image.trim()) {
+            alert("Please fill out all fields correctly.");
+            return;
         }
+
+        if (!validateEmail(newUser.email)) {
+            alert("Please enter a valid email address.");
+            return;
+        }
+
+        const isDuplicateEmail = userList.some((user) => user.email === newUser.email);
+        if (isDuplicateEmail) {
+            alert("This email is already registered. Please use a unique email.");
+            return;
+        }
+
+        setUserList((prev) => [...prev, newUser]);
+        setNotification(`User "${newUser.name}" has been successfully registered!`);
+        setNewUser({ name: "", email: "", password: "", image: "", role: "Admin" }); // Reset fields
+    };
+
+    // Clear the notification message after a few seconds
+    useEffect(() => {
+      if (notification) {
+        const timer = setTimeout(() => setNotification(""), 5000); // Clear after 5 seconds
+        return () => clearTimeout(timer);
+      }
+    }, [notification]);
+
+    const handleBack = () => {
+        navigate(-1); // Navigates to the previous page
     };
 
     return (
@@ -91,10 +111,13 @@ function CreateUser({ userList, setUserList }) {
                     <option value="Borrower">Borrower</option>
                 </select>
             </div>
+            {notification && <p className="notification">{notification}</p>}
             <button className="btn btn-success" onClick={handleSubmit}>
                 Submit
             </button>
-            {notification && <p className="notification">{notification}</p>}
+            <button className="btn btn-secondary back-button" onClick={handleBack}>
+                Back
+            </button>
         </div>
     );
 }

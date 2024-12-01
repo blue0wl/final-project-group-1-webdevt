@@ -1,24 +1,37 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
-import './css-components/LibrarianDashboard.css';
+import './css-components/Dashboard.css';
 
-const LibrarianDashboard = ({ role, email }) => {
-  return (
-    <div className="librarian-dashboard-container">
-      <Sidebar role={role} />
-      <main className="librarian-dashboard-content">
-        <h1 className="librarian-dashboard-title">{role} Dashboard</h1>
-        <p className="librarian-dashboard-description">
-          Welcome, {email}! Manage books, reservations, and returns from here.
-        </p>
-        <div className="librarian-dashboard-actions">
-          <button className="librarian-dashboard-btn">Manage Books</button>
-          <button className="librarian-dashboard-btn">Manage Reservations</button>
-          <button className="librarian-dashboard-btn">Manage Returns</button>
+const LibrarianDashboard = () => {
+    const location = useLocation(); 
+    const { role, email, name } = location.state || {}; 
+
+    console.log("Location state:", location.state); 
+
+    if (!role || !email || !name) {
+        return <p>Error: Missing role or email.</p>; 
+    }
+
+    return (
+        <div className={`dashboard-container ${role.toLowerCase()}`}>
+            <Sidebar role={role} />
+            <main className="dashboard-content">
+                <header>
+                    <h1 className="dashboard-title">{role} Dashboard</h1>
+                    <p className="dashboard-description">Welcome, {name}!</p>
+                </header>
+                <section className="dashboard-description">
+                    <p>From here, you can manage books, reservations, and returns.</p>
+                </section>
+                <section className="dashboard-actions">
+                    <button className="dashboard-btn">Manage Books</button>
+                    <button className="dashboard-btn">Reservations</button>
+                    <button className="dashboard-btn">Returns</button>
+                </section>
+            </main>
         </div>
-      </main>
-    </div>
-  );
+    );
 };
 
 export default LibrarianDashboard;

@@ -32,27 +32,45 @@ function App() {
           <Route path="/" element={<Login />} />
           <Route 
             path="/admin-login" 
-            element={<LoginPage role="Admin" dashboardPath="/admin-dashboard" />} 
+            element={
+              <LoginPage 
+                  role="Admin" 
+                  dashboardPath="/admin-dashboard" 
+                  userList={userList} 
+              />
+            } 
           />
           <Route 
             path="/librarian-login" 
-            element={<LoginPage role="Librarian" dashboardPath="/librarian-dashboard" />} 
+            element={
+              <LoginPage 
+                  role="Librarian" 
+                  dashboardPath="/librarian-dashboard" 
+                  userList={userList} 
+              />
+            } 
           />
           <Route 
             path="/borrower-login" 
-            element={<LoginPage role="Borrower" dashboardPath="/borrower-dashboard" />} 
+            element={
+              <LoginPage 
+                  role="Borrower" 
+                  dashboardPath="/borrower-dashboard" 
+                  userList={userList} 
+              />
+            } 
           />
-          <Route 
-            path="/admin-dashboard" 
-            element={<AdminDashboard role="Admin" email={localStorage.getItem('email')} />} 
+          <Route
+            path="/admin-dashboard"
+            element={<AdminDashboard role={location.state?.role} email={location.state?.email} />}
           />
           <Route 
             path="/librarian-dashboard" 
-            element={<LibrarianDashboard role="Librarian" email={localStorage.getItem('email')} />} 
+            element={<LibrarianDashboard />} 
           />
           <Route 
             path="/borrower-dashboard" 
-            element={<BorrowerDashboard role="Borrower" email={localStorage.getItem('email')} />} 
+            element={<BorrowerDashboard />} 
           />
           <Route path="/user-list" element={<UserList userList={userList} setUserList={setUserList} />} />
           <Route path="/create-user" element={<CreateUser userList={userList} setUserList={setUserList} />} />
