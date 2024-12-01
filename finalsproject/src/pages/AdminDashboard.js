@@ -5,29 +5,24 @@ import './css-components/Dashboard.css';
 
 const LibrarianDashboard = () => {
     const location = useLocation(); 
-    const { role, email, name } = location.state || {}; 
+    const { role, email } = location.state || {}; 
 
     console.log("Location state:", location.state); 
 
-    if (!role || !email || !name) {
+    if (!role || !email ) {
         return <p>Error: Missing role or email.</p>; 
     }
 
     return (
         <div className={`dashboard-container ${role.toLowerCase()}`}>
-            <Sidebar role={role} />
+            <Sidebar role={role} user={location.state} />
             <main className="dashboard-content">
                 <header>
                     <h1 className="dashboard-title">{role} Dashboard</h1>
-                    <p className="dashboard-description">Welcome, {name}!</p>
+                    <p className="dashboard-description">Welcome, {location.state.name}!</p>
                 </header>
                 <section className="dashboard-description">
-                    <p>From here, you can manage books, reservations, and returns.</p>
-                </section>
-                <section className="dashboard-actions">
-                    <button className="dashboard-btn">Manage Books</button>
-                    <button className="dashboard-btn">Reservations</button>
-                    <button className="dashboard-btn">Returns</button>
+                    <p>From here, you can manage librarians, view reports, and access other administrative tools.</p>
                 </section>
             </main>
         </div>

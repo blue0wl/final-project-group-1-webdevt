@@ -5,11 +5,11 @@ import './css-components/Dashboard.css';
 
 const BorrowerDashboard = () => {
     const location = useLocation(); 
-    const { role, email, name } = location.state || {}; 
+    const { role, email } = location.state || {}; 
 
     console.log("Location state:", location.state); 
 
-    if (!role || !email || !name) {
+    if (!role || !email ) {
         return <p>Error: Missing role or email.</p>; 
     }
 
@@ -19,7 +19,7 @@ const BorrowerDashboard = () => {
             <main className="dashboard-content">
                 <header>
                     <h1 className="dashboard-title">{role} Dashboard</h1>
-                    <p className="dashboard-description">Welcome, {name}!</p>
+                    <p className="dashboard-description">Welcome, {location.state.name}!</p>
                 </header>
                 <section className="dashboard-description">
                     <p>From here, you can search for books and view your borrowing logs.</p>

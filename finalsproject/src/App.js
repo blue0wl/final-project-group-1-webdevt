@@ -18,6 +18,9 @@ import AdminDashboard from './pages/AdminDashboard';
 import LibrarianDashboard from './pages/LibrarianDashboard';
 import BorrowerDashboard from './pages/BorrowerDashboard';
 
+// Admin Dashboard Actions
+import Reports from './pages/Reports';
+
 function App() {
   const [userList, setUserList] = useState([
     // Example of existing user with a role
@@ -28,6 +31,8 @@ function App() {
 
   return (
     <div className="App">
+        {/* Main Login Routes */}
+
         <Routes>
           <Route path="/" element={<Login />} />
           <Route 
@@ -60,6 +65,9 @@ function App() {
               />
             } 
           />
+
+          {/* Main Dashboard Routes */}
+
           <Route
             path="/admin-dashboard"
             element={<AdminDashboard role={location.state?.role} email={location.state?.email} />}
@@ -72,10 +80,25 @@ function App() {
             path="/borrower-dashboard" 
             element={<BorrowerDashboard />} 
           />
+
+          {/* User CRUD Routes */}
+
           <Route path="/user-list" element={<UserList userList={userList} setUserList={setUserList} />} />
           <Route path="/create-user" element={<CreateUser userList={userList} setUserList={setUserList} />} />
           <Route path="/update-user" element={<UpdateUser userList={userList} setUserList={setUserList} />} />
           <Route path="/delete-user" element={<DeleteUser userList={userList} setUserList={setUserList} />} />
+
+          {/* Admin Dashboard Routes */}
+          <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/manage-users" element={<UserList userList={userList} setUserList={setUserList} />} />
+          <Route path="/admin/reports" element={<Reports />} />
+          {/* Librarian Dashboard Routes */}
+
+
+          {/* Borrower Dashboard Routes */}
+
+
+
         </Routes>
     </div>
   );

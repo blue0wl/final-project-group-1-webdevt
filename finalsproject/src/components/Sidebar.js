@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // Using useNavigate for redirect
-import './css-components/Sidebar.css'; // Custom CSS for Sidebar
+import { useNavigate } from 'react-router-dom'; 
+import './css-components/Sidebar.css'; 
 
-const Sidebar = ({ role }) => {
-  const navigate = useNavigate(); // Initialize navigate hook
+const Sidebar = ({ role, user }) => {
+  const navigate = useNavigate();
+  
   const normalizedRole = role?.toLowerCase();
-
+  
   const menuItems = {
-    admin: ['Dashboard', 'Manage Librarians', 'Reports'],
+    admin: ['Dashboard', 'Manage Users', 'Reports'],
     librarian: ['Dashboard', 'Manage Books', 'Reservations', 'Returns'],
     borrower: ['Dashboard', 'Search Books', 'Borrowing Logs'],
   };
@@ -24,28 +25,40 @@ const Sidebar = ({ role }) => {
 
   // Logout function to clear session and redirect to home page
   const handleLogout = () => {
-    navigate("/");
+    navigate("/"); 
+  };
+
+  // Navigate to selected menu item and pass user info in location.state
+  const handleNavigate = (path) => {
+    navigate(path, { state: { ...user } });
   };
 
   return (
     <aside className="sidebar-container">
       <h2 className="sidebar-title">{role} Menu</h2>
       <ul className="sidebar-menu">
-        {menuItems[normalizedRole].map((item, index) => (
-          <li key={index} className="sidebar-item">
-            <Link 
-              to={`/${normalizedRole}/${item.toLowerCase().replace(' ', '-')}`} 
-              className="sidebar-link"
-            >
-              {item}
-            </Link>
-          </li>
-        ))}
+        {menuItems[normalizedRole].map((item, index) => {
+          // Dynamically create the route path
+          const routePath = `/${normalizedRole}/${item.toLowerCase().replace(' ', '-')}`;
+
+          return (
+            <li key={index} className="sidebar-item">
+              <button 
+                onClick={() => handleNavigate(routePath)} // Navigate with state
+                className="sidebar-link"
+              >
+                {item}
+              </button>
+            </li>
+          );
+        })}
       </ul>
+
       {/* Logout Button */}
       <button className="logout-btn" onClick={handleLogout}>
         Logout
       </button>
+
     </aside>
   );
 };

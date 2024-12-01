@@ -61,10 +61,10 @@ function LoginPage({ role, dashboardPath, userList }) {
                 />
             </div>
             <div className="button-group">
-                <button className="btn btn-primary login-button" onClick={handleLogin}>
+                <button className="btn login-button" onClick={handleLogin}>
                     Login
                 </button>
-                <button className="btn btn-secondary back-button" onClick={handleBack}>
+                <button className="btn back-button" onClick={handleBack}>
                     Back
                 </button>
             </div>

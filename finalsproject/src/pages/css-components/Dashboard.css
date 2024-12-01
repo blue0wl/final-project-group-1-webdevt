@@ -1,26 +1,28 @@
+
 .dashboard-container {
   display: flex;
+  padding-left: 250px; 
+  transition: padding-left 0.3s ease-in-out;
 }
 
 .dashboard-content {
   flex-grow: 1;
   padding: 30px;
-  background: #ffffff; /* White background for the main content */
-  color: #333333; /* Dark text for readability */
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+  background: #ffffff; 
+  color: #333333; 
 }
 
 .dashboard-title {
   font-size: 2.5rem;
   font-weight: bold;
   margin-bottom: 15px;
-  color: #6a11cb; /* Primary color for title */
+  color: #6a11cb; 
 }
 
 .dashboard-description {
   font-size: 1.5rem;
   margin-bottom: 30px;
-  color: #2575fc; /* Secondary color for description */
+  color: #2575fc; 
 }
 
 .dashboard-actions {
@@ -29,7 +31,7 @@
 }
 
 .dashboard-btn {
-  background: #2575fc; /* Secondary color for buttons */
+  background: #2575fc;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -40,19 +42,6 @@
 }
 
 .dashboard-btn:hover {
-  background: #6a11cb; /* Hover color with a darker shade for buttons */
+  background: #6a11cb; 
   transform: scale(1.05);
-}
-
-/* Role-Specific Styling (if needed) */
-.dashboard-container.admin {
-  background: linear-gradient(to right, #6a11cb, #2575fc); /* Example for Admin */
-}
-
-.dashboard-container.librarian {
-  background: linear-gradient(to right, #42a5f5, #1e88e5); /* Example for Librarian */
-}
-
-.dashboard-container.borrower {
-  background: linear-gradient(to right, #66bb6a, #43a047); /* Example for Borrower */
 }

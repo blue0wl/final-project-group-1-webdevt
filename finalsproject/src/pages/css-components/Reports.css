@@ -1,0 +1,17 @@
+.reports-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .reports-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6a11cb;
+    margin-bottom: 20px;
+  }
+  
+  .reports-content {
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
