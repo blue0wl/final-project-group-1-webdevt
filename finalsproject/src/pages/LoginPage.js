@@ -1,8 +1,9 @@
 import './css-components/LoginPage.css';
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ReportMessage from '../components/public/data/ReportMessage';
 
-function LoginPage({ role, dashboardPath, userList }) {
+function LoginPage({ role, dashboardPath, userList, logList, setLogList}) {
     const [credentials, setCredentials] = useState({ email: "", password: "" });
     const [error, setError] = useState("");
     const navigate = useNavigate();
@@ -11,7 +12,7 @@ function LoginPage({ role, dashboardPath, userList }) {
         const { name, value } = e.target;
         setCredentials((prev) => ({ ...prev, [name]: value }));
     };
-
+    
     const handleLogin = () => {
         const user = userList.find(
             (u) =>
@@ -21,13 +22,36 @@ function LoginPage({ role, dashboardPath, userList }) {
         );
     
         if (user) {
+            // Log the login action
+            const timestamp = new Date().toLocaleString();
+            const activityMessage = (
+                <ReportMessage
+                    user={user.name || 'Unknown User'}
+                    email={user.email || 'Unknown Email'}
+                    role={user.role || 'Unknown Role'}
+                    report="login"
+                    timestamp={timestamp}
+                />
+            );
+    
+            const logEntry = {
+                user: user.name || 'Unknown User',
+                email: user.email || 'Unknown Email',
+                role: user.role || 'Unknown Role',
+                activity: activityMessage,
+                timestamp,
+            };
+            setLogList((prev) => [...prev, logEntry]);
+    
+            // Navigate to the dashboard and replace the current history entry
             navigate(dashboardPath, {
-                state: { ...user }, 
+                state: { ...user },
+                replace: true,  // Replace the history entry to prevent going back
             });
         } else {
             setError("Invalid email, password, or role. Please try again.");
         }
-    };
+    };    
     
     const handleBack = () => {
         navigate("/"); 
@@ -40,7 +64,7 @@ function LoginPage({ role, dashboardPath, userList }) {
         <div className="login-page-container">
             <h2>{role} Login</h2>
             <div className="form-group">
-                <label>Email</label>
+                <label className='login-color'>Email</label>
                 <input
                     type="email"
                     name="email"
@@ -51,7 +75,7 @@ function LoginPage({ role, dashboardPath, userList }) {
                 />
             </div>
             <div className="form-group">
-                <label>Password</label>
+                <label className='login-color'>Password</label>
                 <input
                     type="password"
                     name="password"

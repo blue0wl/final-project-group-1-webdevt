@@ -1,9 +1,12 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation} from 'react-router-dom';
 import './css-components/Login.css'; 
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  console.log("Location state:", location.state);
 
   return (
     <div className="login-container">
@@ -15,8 +18,6 @@ const Login = () => {
           <button className="login-link" onClick={() => navigate('/admin-login')}>Admin</button>
           <button className="login-link" onClick={() => navigate('/librarian-login')}>Librarian</button>
           <button className="login-link" onClick={() => navigate('/borrower-login')}>Borrower</button>
-          {/* TEMPORARY webpage testing */}
-          <button className="login-link" onClick={() => navigate('/user-list')}>User List</button>
         </div>
       </div>
     </div>

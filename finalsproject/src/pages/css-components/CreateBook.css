@@ -1,0 +1,76 @@
+.create-book-background {
+    background: linear-gradient(to right, #6a0080, #003ba0);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .create-book-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 700px;
+  }
+  
+  .create-book-container h2 {
+    color: #2575fc;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .create-book-form-group {
+    margin-bottom: 15px;
+  }
+  
+  .create-book-form-group label {
+    color: #6a11cb;
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  
+  .create-book-form-group input,
+  .create-book-form-group select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    margin-top: 5px;
+  }
+  
+  .create-book-form-group input[type="text"],
+  .create-book-form-group input[type="date"],
+  .create-book-form-group select {
+    background-color: #fff;
+  }
+  
+  .create-book-form-group input:focus,
+  .create-book-form-group select:focus {
+    outline: none;
+    border-color: #2575fc;
+  }
+  
+  .notification {
+    color: #fff;
+    background-color: #28a745;
+    padding: 10px;
+    margin-top: 15px;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  select option {
+    color: #333;
+  }
+  
+  .create-book-form-group input[readonly] {
+    background-color: #f9f9f9;
+    border-color: #ddd;
+    cursor: not-allowed;
+  }
+  

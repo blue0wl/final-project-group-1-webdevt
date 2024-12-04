@@ -25,9 +25,18 @@ import EditProfile from './components/LowerAdminUpdate';
 import Reports from './pages/Reports';
 
 // Librarian Dashboard Actions
-
+import ManageBooks from './pages/ManageBooks'; 
+import CreateBooks from './pages/CreateBook';
+import UpdateBooks from './pages/UpdateBook';
+import BorrowerUserList from './components/BorrowerUserList';
+import ReservationMenu from './pages/ReservationMenu';
+import ReturnMenu from './pages/ReturnMenu';
 
 // Borrower Dashboard Actions
+import books from './components/public/data/books';
+import Catalog from './components/Cards';
+import BookDetails from "./components/BookDetails";
+import BorrowBook from './pages/BorrowBook';
 
 
 
@@ -38,6 +47,10 @@ function App() {
     { name: "Librarian User", email: "librarian@example.com", password: "lib123", image: "https://picsum.photos/201", role: "Librarian" },
     { name: "Borrower User", email: "borrower@example.com", password: "borrow123", image: "https://picsum.photos/202", role: "Borrower" }
   ]);
+  const [bookList, setBookList] = useState(books);
+  const [reservationList, setReservationList] = useState([]);
+  const [logList, setLogList] = useState([]); 
+  const [returnList, setReturnList] = useState([]);
 
   return (
     <div className="App">
@@ -52,6 +65,8 @@ function App() {
                   role="Admin" 
                   dashboardPath="/admin-dashboard" 
                   userList={userList} 
+                  logList={logList}
+                  setLogList={setLogList}
               />
             } 
           />
@@ -62,6 +77,8 @@ function App() {
                   role="Librarian" 
                   dashboardPath="/librarian-dashboard" 
                   userList={userList} 
+                  logList={logList}
+                  setLogList={setLogList}
               />
             } 
           />
@@ -72,6 +89,8 @@ function App() {
                   role="Borrower" 
                   dashboardPath="/borrower-dashboard" 
                   userList={userList} 
+                  logList={logList}
+                  setLogList={setLogList}
               />
             } 
           />
@@ -80,41 +99,63 @@ function App() {
 
           <Route
             path="/admin-dashboard"
-            element={<AdminDashboard role={location.state?.role} email={location.state?.email} />}
+            element={<AdminDashboard logList={logList} setLogList={setLogList} />}
           />
           <Route 
             path="/librarian-dashboard" 
-            element={<LibrarianDashboard />} 
+            element={<LibrarianDashboard logList={logList} setLogList={setLogList} />} 
           />
           <Route 
             path="/borrower-dashboard" 
-            element={<BorrowerDashboard />} 
+            element={<BorrowerDashboard logList={logList} setLogList={setLogList} />} 
           />
 
           {/* User CRUD Routes */}
 
-          <Route path="/user-list" element={<UserList userList={userList} setUserList={setUserList} />} />
-          <Route path="/create-user" element={<CreateUser userList={userList} setUserList={setUserList} />} />
-          <Route path="/update-user" element={<UpdateUser userList={userList} setUserList={setUserList} />} />
+          <Route path="/user-list" element={<UserList userList={userList} setUserList={setUserList} logList={logList} setLogList={setLogList} setReservationList={setReservationList} setReturnList={setReturnList} />} />
+          <Route path="/create-user" element={<CreateUser userList={userList} setUserList={setUserList} logList={logList} setLogList={setLogList}/>} />
+          <Route path="/update-user" element={<UpdateUser userList={userList} setUserList={setUserList} logList={logList} setLogList={setLogList} />} />
 
           {/* Admin Dashboard Routes */}
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/profile" element={<Profile userList={userList} setUserList={setUserList} />} />
+          <Route path="/admin/dashboard" element={<AdminDashboard logList={logList} setLogList={setLogList} />} />
+          <Route path="/admin/profile" element={<Profile userList={userList} setUserList={setUserList} logList={logList} setLogList={setLogList} setReservationList={setReservationList} setReturnList={setReturnList}/>} />
             <Route 
               path="/admin/profile/edit" 
-              element={<EditProfile userList={userList} setUserList={setUserList} />} 
+              element={<EditProfile userList={userList} setUserList={setUserList} logList={logList} setLogList={setLogList}/>} 
             />
-          <Route path="/admin/manage-users" element={<UserList userList={userList} setUserList={setUserList} />} />
-          <Route path="/admin/reports" element={<Reports />} />
+          <Route path="/admin/manage-users" element={<UserList userList={userList} setUserList={setUserList} logList={logList} setLogList={setLogList} setReservationList={setReservationList} setReturnList={setReturnList}/>} />
+          <Route path="/admin/reports" element={<Reports logList={logList} setLogList={setLogList}/>} />
 
           {/* Librarian Dashboard Routes */}
-          <Route path="/librarian/dashboard" element={<LibrarianDashboard />} />
-          <Route path="/librarian/profile" element={<Profile userList={userList} setUserList={setUserList} />} />
+          <Route path="/librarian/dashboard" element={<LibrarianDashboard logList={logList} setLogList={setLogList} />} />
+          <Route path="/librarian/profile" element={<Profile userList={userList} setUserList={setUserList} logList={logList} setLogList={setLogList} setReservationList={setReservationList} setReturnList={setReturnList}/>} />
+          <Route path="/librarian/manage-books" element={<ManageBooks bookList={bookList} setBookList={setBookList} logList={logList} setLogList={setLogList} setReservationList={setReservationList} setReturnList={setReturnList}/>} />
+          <Route path="/librarian/manage-books/add" element={<CreateBooks bookList={bookList} setBookList={setBookList} logList={logList} setLogList={setLogList}/>} />
+          <Route path="/librarian/manage-books/edit" element={<UpdateBooks bookList={bookList} setBookList={setBookList} setLogList={setLogList}/>} />
+          <Route path="/librarian/borrower-list" element={
+              <BorrowerUserList userList={userList} setUserList={setUserList} logList={logList} setLogList={setLogList} setReservationList={setReservationList} setReturnList={setReturnList}  />} 
+          />
+          <Route path="/librarian/librarian-logs" element={<Reports logList={logList} setLogList={setLogList}/>}/>
+          <Route path="/librarian/reservations" 
+            element={<ReservationMenu reservationList={reservationList} setReservationList={setReservationList} logList={logList} setLogList={setLogList} returnList={returnList} setReturnList={setReturnList} bookList={bookList} setBookList={setBookList}/>}
+          />
+          <Route path="/librarian/returns" element={<ReturnMenu logList={logList} setLogList={setLogList} returnList={returnList} setReturnList={setReturnList}/>}/>
 
           {/* Borrower Dashboard Routes */}
-          <Route path="/borrower/dashboard" element={<BorrowerDashboard />} />
-          <Route path="/borrower/profile" element={<Profile userList={userList} setUserList={setUserList} />} />
+          <Route path="/borrower/dashboard" element={<BorrowerDashboard logList={logList} setLogList={setLogList} />} />
+          <Route path="/borrower/profile" element={<Profile userList={userList} setUserList={setUserList} logList={logList} setLogList={setLogList} setReservationList={setReservationList} setReturnList={setReturnList}/>} />
+          <Route path="/borrower/borrowing-logs" element={<Reports logList={logList} setLogList={setLogList}/>}/>
 
+          {/* Book Catalog Routes */}
+          <Route path="/borrower/search-books" element={<Catalog bookList={bookList} logList={logList} setLogList={setLogList}/>} />
+          <Route path="/book/:id" element={<BookDetails bookList={bookList} />} />
+          <Route path="/borrower/search-books/:id" 
+            element={<BorrowBook 
+              reservationList={reservationList} setReservationList={setReservationList}
+              logList={logList} setLogList={setLogList}
+              />
+            }
+        />
 
         </Routes>
     </div>

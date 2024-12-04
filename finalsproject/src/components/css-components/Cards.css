@@ -1,0 +1,188 @@
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    background: white;
+  }
+  
+  .borrower-card {
+    background: linear-gradient(to top, #6a11cb, #2575fc);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 300px;
+    text-align: center;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .borrower-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .card-cover {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    margin: 10px 0;
+  }
+  
+  .card-author,
+  .card-genre,
+  .card-isbn,
+  .card-pubdate {
+    font-size: 1rem;
+    margin: 5px 0;
+    color: white;
+  }
+  
+  .card-availability {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  
+  .card-availability.available {
+    color: green;
+  }
+  
+  .card-availability.unavailable {
+    color: red;
+  }
+  
+.button-container {
+  bottom: 10px; 
+  left: 0;
+  right: 0;
+  gap: 10px; 
+}
+
+  .details-button {
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    width: auto; 
+  }
+  
+  .details-button:hover {
+    background-color: #6a11cb;
+  }
+  
+  .details-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(37, 117, 252, 0.8);
+  }
+  
+  .book-spacer {
+    display: flex;
+    flex: 1;
+  }
+
+  .search-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap; 
+    justify-content: justify;
+    margin-bottom: 20px;
+  }
+
+  .search-bar-item {
+    width: 250px; 
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: white;
+    cursor: pointer;
+    box-sizing: border-box; 
+  }
+  
+  .search-bar-item:focus {
+    outline: none;
+    border-color: #2575fc;
+    box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
+  }
+  
+  .search-input {
+    width: 70%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+  
+  .search-input:focus {
+    outline: none;
+    border-color: #6a11cb;
+    box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
+  }
+  
+  .no-books-message {
+    font-size: 1.2rem;
+    color: #6a11cb;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .genre-select {
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+  .genre-select:focus {
+    outline: none;
+    border-color: #6a11cb;
+    box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
+  }
+  
+  .availability-select {
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+  .availability-select:focus {
+    outline: none;
+    border-color: #6a11cb;
+    box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
+  }
+  
+  .search-type-select {
+    margin-left: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+  .search-type-select:focus {
+    outline: none;
+    border-color: #6a11cb;
+    box-shadow: 0 0 5px rgba(106, 17, 203, 0.5);
+  }
+  

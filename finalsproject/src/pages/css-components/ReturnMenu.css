@@ -1,0 +1,74 @@
+.dashboard-container {
+    display: flex;
+  }
+  
+  .dashboard-content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .dashboard-title {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-bar-item {
+    padding: 8px;
+    font-size: 1rem;
+  }
+  
+  .return-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .return-card {
+    background: linear-gradient(to top, #6a11cb, #2575fc);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+  
+  .return-card p {
+    margin: 5px 0;
+    font-size: 1rem;
+    color: white;
+  }
+  
+  .return-button {
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+  }
+  .return-button {
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .return-button:hover {
+    background-color: #6a11cb;
+  }
+  
+  .return-button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(37, 117, 252, 0.8);
+  }
+  

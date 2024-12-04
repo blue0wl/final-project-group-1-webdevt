@@ -9,8 +9,8 @@
 .login-page-container {
     max-width: 400px;
     margin: 50px auto;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    color: #fff;
+    background: white;
+    color: #2575fc;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -74,4 +74,8 @@ h2 {
     color: #ff4d4d;
     font-weight: bold;
     text-align: center;
+}
+
+.login-color {
+    color: #fff
 }

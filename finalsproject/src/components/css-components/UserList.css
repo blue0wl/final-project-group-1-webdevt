@@ -1,46 +1,95 @@
-.user-list-background {
-  align-items: center;
-  padding: 20px;
-  background: linear-gradient(to right, #6a0080, #003ba0); 
-  min-height: 100vh; 
-  color: #ffffff; 
+
+.user-list-dashboard-container {
+    display: flex;
+    min-height: 100%;
+    padding-left: 250px; 
+    transition: padding-left 0.3s ease-in-out;
 }
+
+.main-content {
+    flex: 1; /* Flex-grow to fill available space */
+    padding: 20px;
+    min-height: 100vh; /* Ensure it always fills the viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Content starts at the top */
+    background: linear-gradient(to right, #6a0080, #003ba0);
+    color: #333;
+    height: 100%;
+    box-sizing: border-box; /* Includes padding in the height calculation */
+  }
+  
 
 .user-list-container {
-  max-width: 800px;
-  margin: 50px auto;
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
+.user-list-container h2 {
+    color: #2575fc;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.notification {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 
 .user-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
 }
 
 .user-table th,
 .user-table td {
-  text-align: left;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #2575fc;
+    color: #6a11cb;
 }
 
 .user-table th {
-  background-color: rgba(0, 0, 0, 0.1);
-  font-weight: bold;
+    background-color: #f4f4f4;
 }
 
-.user-table tr:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+.btn {
+    margin-right: 10px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #2575fc;
+    color: white;
+}
+
+.btn-danger {
+    background-color: #ff4d4d;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.back-button {
+    margin-top: 20px;
 }
 
 .profile-image {
@@ -48,20 +97,5 @@ h2 {
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
-}
-
-.back-button {
-  display: block;
-  margin: 0 auto;
-  background-color: #6c757d;
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.back-button:hover {
-  background-color: #5a6268;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

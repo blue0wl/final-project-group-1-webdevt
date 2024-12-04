@@ -1,16 +1,22 @@
-.reports-container {
-    padding: 20px;
-    background-color: #f9f9f9;
-  }
-  
-  .reports-title {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #6a11cb;
-    margin-bottom: 20px;
-  }
-  
-  .reports-content {
-    font-size: 1.2rem;
-    color: #333;
-  }
+.log-card {
+  background: linear-gradient(to bottom, #6a0080, #003ba0);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.log-card p {
+  color: white;
+}
+
+.log-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.log-card-content {
+  line-height: 1.5;
+}
