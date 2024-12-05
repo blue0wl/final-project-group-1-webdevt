@@ -23,21 +23,10 @@ function UpdateBook({ bookList, setBookList, setLogList}) {
     PublicationDate: bookDetails.PublicationDate || "",
     Cover: bookDetails.Cover || "",
   });
+
   const [originalBookData] = useState(bookDetails);
   const [notification, setNotification] = useState("");
 
-  const isUpdateDisabled = () => {
-    return (
-        bookData.ISBN === originalBookData.ISBN &&
-        bookData.Author === originalBookData.Author &&
-        bookData.Title === originalBookData.Title &&
-        bookData.Synopsis === originalBookData.Synopsis &&
-        bookData.Genre === originalBookData.Genre &&
-        bookData.Availability === originalBookData.Availability &&
-        bookData.PublicationDate === originalBookData.PublicationDate &&
-        bookData.Cover === originalBookData.Cover
-    );
-};
   // Ensure valid data exists in location.state
   useEffect(() => {
     if (!bookDetails.ID) {
@@ -48,6 +37,7 @@ function UpdateBook({ bookList, setBookList, setLogList}) {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setBookData((prev) => ({ ...prev, [name]: value }));
+    console.log("Now: ", bookData, "New: ", originalBookData)
   };
 
   const validateISBN = (ISBN) => {
@@ -254,7 +244,7 @@ setLogList((prev) => [...prev, logEntry]);
 
         {notification && <p className="notification">{notification}</p>}
 
-        <button className="btn btn-success" onClick={handleSubmit} disabled={isUpdateDisabled}>
+        <button className="btn btn-success" onClick={handleSubmit}>
           Submit
         </button>
         <button className="btn btn-secondary" onClick={() => navigate(-1)}>
