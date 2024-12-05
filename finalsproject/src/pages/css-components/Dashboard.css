@@ -1,0 +1,47 @@
+
+.dashboard-container {
+  display: flex;
+  padding-left: 250px; 
+  transition: padding-left 0.3s ease-in-out;
+}
+
+.dashboard-content {
+  flex-grow: 1;
+  padding: 30px;
+  background: #ffffff; 
+  color: #333333; 
+}
+
+.dashboard-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #6a11cb; 
+}
+
+.dashboard-description {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  color: #2575fc; 
+}
+
+.dashboard-actions {
+  display: flex;
+  gap: 20px;
+}
+
+.dashboard-btn {
+  background: #2575fc;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.dashboard-btn:hover {
+  background: #6a11cb; 
+  transform: scale(1.05);
+}

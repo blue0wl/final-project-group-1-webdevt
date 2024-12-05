@@ -1,0 +1,90 @@
+.book-details-container {
+    padding: 20px;
+    background: linear-gradient(to bottom, #6a0080, #003ba0);
+    min-height: 100vh;
+    max-height: max-content;
+    color: #fff;
+    font-family: "Arial", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .book-details-back-button {
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .book-details-back-button:hover {
+    background-color: #6a11cb;
+  }
+  
+  .book-details {
+    background-color: #6a11cb;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .book-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .book-cover {
+    width: 200px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .book-basic-info {
+    flex: 1;
+  }
+  
+  .book-title {
+    font-size: 2rem;
+    margin: 0 0 10px;
+  }
+  
+  .book-author,
+  .book-genre,
+  .book-isbn {
+    font-size: 1.1rem;
+    margin: 5px 0;
+  }
+  
+  .book-meta {
+    margin-top: 20px;
+    font-size: 1rem;
+  }
+  
+  .book-meta p {
+    margin: 5px 0;
+  }
+  
+  .book-synopsis-section {
+    margin-top: 30px;
+  }
+  
+  .book-synopsis-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .book-synopsis {
+    text-align: justify;
+    text-justify: inter-word;
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+  

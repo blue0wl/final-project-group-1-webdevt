@@ -1,0 +1,123 @@
+
+.borrow-book-background {
+    background: linear-gradient(to bottom, #6a0080, #003ba0);
+    padding: 20px 0;
+    min-height: 100vh;
+    max-height: max-content;
+  }
+  
+  .borrow-book-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 30px auto;
+  }
+  
+  .borrow-book-container h1 {
+    color: #6a11cb;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+
+  .borrow-book-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+  .form-group label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+  }
+  
+  .form-group p {
+    color: #555;
+    margin: 5px 0;
+    font-size: 16px;
+  }
+  
+  input[type="date"] {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  input[type="date"]:focus {
+    border-color: #6a11cb;
+    outline: none;
+  }
+  
+  .borrow-button {
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+  }
+  
+  .reserve-button {
+    background-color: #2575fc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .reserve-button:hover {
+    background-color: #1a5bc0;
+    transform: scale(1.05);
+  }
+
+  .reserve-button:active {
+    transform: scale(1); 
+  }
+  
+  .cancel-button {
+    background-color: #ccc;
+    color: #333;
+  }
+  
+  .cancel-button:hover {
+    background-color: #999;
+  }
+
+  .cancel-reservation-button {
+    background-color: #ff4d4d; 
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cancel-reservation-button:hover {
+    background-color: #e60000; 
+    transform: scale(1.05); 
+}
+
+.cancel-reservation-button:active {
+    background-color: #cc0000; 
+    transform: scale(1); 
+}
