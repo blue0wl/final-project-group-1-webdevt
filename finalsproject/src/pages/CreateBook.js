@@ -36,9 +36,17 @@ function CreateBooks({ bookList, setBookList, logList, setLogList}) {
         }));
     }, [bookList]);
 
+    const updateBook = () => {
+        setBook({
+            id: newBook.ID,
+            title: newBook.Title,
+            genre: newBook.Genre,
+        });
+      };
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setNewBook((prev) => ({ ...prev, [name]: value }));
+        updateBook();
     };
 
     // Validate ISBN with regex
@@ -53,6 +61,7 @@ function CreateBooks({ bookList, setBookList, logList, setLogList}) {
     };
 
     const handleSubmit = () => {
+
         if (!newBook.ISBN.trim() || !validateISBN(newBook.ISBN)) {
             alert('Please enter a valid ISBN.');
             return;
@@ -74,11 +83,14 @@ function CreateBooks({ bookList, setBookList, logList, setLogList}) {
         }
 
         setBookList((prev) => [...prev, newBook]);
+
+        console.log("Book: ", newBook);
         setBook({
             id: newBook.ID,
             title: newBook.Title,
             genre: newBook.Genre,
-        })
+        });
+
         const timestamp = new Date().toLocaleString();
         // Generate the activity message using ReportMessage
             const activityMessage = (

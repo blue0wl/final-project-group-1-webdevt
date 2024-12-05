@@ -58,13 +58,24 @@ const ReturnMenu = ({ returnList, setReturnList, logList, setLogList }) => {
       const timestamp = new Date().toLocaleString();
       const lateFee = calculateLateFee(entry.borrowDate, entry.returnDue);
 
+      // Generate the activity message using ReportMessage
+      const activityMessage = (
+        <ReportMessage
+            user={user.name || 'Unknown User'} // Current user's name
+            email={user.email || 'Unknown Email'} // Current user's email
+            role={user.role || 'Unknown Role'} // Current user's role
+            report="return"
+            timestamp={timestamp}
+            borrower={reservation}
+        />
+    );
+
       // Log the return action
       const logEntry = {
         user: user.name || "Unknown User",
         email: user.email || "Unknown Email",
         role: user.role || "Unknown Role",
-        activity: `Book Returned---${user.role || "Unknown"} User, ${user.name || "Unknown Name"} (${user.email || "Unknown Email"}), has received ${entry.bookID || "Unknown Book ID"} ${entry.bookTitle || "Unknown Book Title"} 
-          from ${entry.user || "Unknown Borrower"} (${entry.email || "Unknown Borro wer Email"}). The total late fee is: ${lateFee}.`,
+        activity: activityMessage,
         timestamp,
       };
 
@@ -117,7 +128,7 @@ const ReturnMenu = ({ returnList, setReturnList, logList, setLogList }) => {
                   <p><strong>Book ID:</strong> {entry.bookID}</p>
                   <p><strong>Borrow Date:</strong> {entry.borrowDate}</p>
                   <p><strong>Return Due:</strong> {entry.returnDue}</p>
-                  <p><strong>Late Fee:</strong> ${lateFee}</p>
+                  <p><strong>Late Fee:</strong> {lateFee} PHP</p>
                   <button className="return-button mt-2" onClick={() => handleReturn(entry)}>
                     Return Book
                   </button>
