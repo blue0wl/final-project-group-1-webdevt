@@ -42,6 +42,7 @@ const ReservationMenu = ({ reservationList, setReservationList, returnList, setR
       bookTitle: reservation.bookTitle,
       user: reservation.user || "Unknown User",
       email: reservation.email || "Unknown Email",
+      borrowDate: reservation.borrowDate || "Unknown Borrow Date",
     });
   };
   
@@ -77,8 +78,32 @@ const ReservationMenu = ({ reservationList, setReservationList, returnList, setR
         activity: activityMessage,
         timestamp,
       };
-  
+      
       setLogList((prev) => [...prev, logEntry]);
+
+      // Generate the activity message using ReportMessage
+      const activityMessageBorrow = (
+        <ReportMessage
+            user={user.name || 'Unknown User'} // Current user's name
+            email={user.email || 'Unknown Email'} // Current user's email
+            role={user.role || 'Unknown Role'} // Current user's role
+            report="accepted-message"
+            timestamp={timestamp}
+            borrower={entry}
+        />
+      );
+
+      // Log the acceptance message for borrower
+      const logEntryBorrow = {
+        user: entry.user || "Unknown User",
+        email: entry.email || "Unknown Email",
+        role: "Borrower",
+        activity: activityMessageBorrow,
+        timestamp,
+      };
+      
+  
+      setLogList((prev) => [...prev, logEntryBorrow]);
   
       // Add to returnList
       setReturnList((prev) => [...prev, reservation]);
@@ -103,9 +128,6 @@ const ReservationMenu = ({ reservationList, setReservationList, returnList, setR
     if (confirmed) {
       const timestamp = new Date().toLocaleString();
 
-      const lateFee = calculateLateFee(entry.borrowDate, entry.returnDue); // Calculate late fee
-      entry.lateFee = lateFee;
-      
       // Generate the activity message using ReportMessage
       const activityMessage = (
         <ReportMessage
@@ -128,6 +150,29 @@ const ReservationMenu = ({ reservationList, setReservationList, returnList, setR
       };
   
       setLogList((prev) => [...prev, logEntry]);
+
+      // Generate the activity message using ReportMessage
+      const activityMessageBorrow = (
+        <ReportMessage
+            user={user.name || 'Unknown User'} // Current user's name
+            email={user.email || 'Unknown Email'} // Current user's email
+            role={user.role || 'Unknown Role'} // Current user's role
+            report="rejected-message"
+            timestamp={timestamp}
+            borrower={entry}
+        />
+      );
+
+      // Log the acceptance message for borrower
+      const logEntryBorrow = {
+        user: entry.user || "Unknown User",
+        email: entry.email || "Unknown Email",
+        role: "Borrower",
+        activity: activityMessageBorrow,
+        timestamp,
+      };
+  
+      setLogList((prev) => [...prev, logEntryBorrow]);
 
       // Remove from reservationList
       setReservationList((prev) => prev.filter((item) => item !== reservation));
@@ -169,7 +214,7 @@ const ReservationMenu = ({ reservationList, setReservationList, returnList, setR
             filteredReservations.map((reservation, index) => (
               <div
                 key={index}
-                className={`reservation-card mb-3 ${focusedReservation === `${reservation.bookID}-${reservation.email}` ? 'focused' : ''}`}
+                className={`reservation-card mb-3 ${focusedReservation === `${reservation.bookID}-${reservation.email}` ? 'reservation-card-focused' : ''}`}
                 onClick={() => handleSelectReservation(reservation)}
               >
                 <p><strong>User:</strong> {reservation.user}</p>

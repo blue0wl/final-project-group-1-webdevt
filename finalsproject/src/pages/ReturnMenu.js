@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import "./css-components/ReturnMenu.css";
+import ReportMessage from "../components/public/data/ReportMessage";
 
 const ReturnMenu = ({ returnList, setReturnList, logList, setLogList }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -66,7 +67,7 @@ const ReturnMenu = ({ returnList, setReturnList, logList, setLogList }) => {
             role={user.role || 'Unknown Role'} // Current user's role
             report="return"
             timestamp={timestamp}
-            borrower={reservation}
+            entry={entry}
         />
     );
 
@@ -120,6 +121,7 @@ const ReturnMenu = ({ returnList, setReturnList, logList, setLogList }) => {
           ) : (
             filteredReturns.map((entry, index) => {
               const lateFee = calculateLateFee(entry.borrowDate, entry.returnDue);
+              entry.lateFee = lateFee;
               return (
                 <div key={index} className="return-card mb-3">
                   <p><strong>User:</strong> {entry.user}</p>
@@ -128,7 +130,7 @@ const ReturnMenu = ({ returnList, setReturnList, logList, setLogList }) => {
                   <p><strong>Book ID:</strong> {entry.bookID}</p>
                   <p><strong>Borrow Date:</strong> {entry.borrowDate}</p>
                   <p><strong>Return Due:</strong> {entry.returnDue}</p>
-                  <p><strong>Late Fee:</strong> {lateFee} PHP</p>
+                  <p><strong>Late Fee:</strong> {entry.lateFee} PHP</p>
                   <button className="return-button mt-2" onClick={() => handleReturn(entry)}>
                     Return Book
                   </button>

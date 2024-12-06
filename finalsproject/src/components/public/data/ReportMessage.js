@@ -7,9 +7,9 @@ function ReportMessage({
     email = {},
     newUser = {}, 
     book = {}, 
-    oldBook = {}, 
     selectedUser = {}, 
-    borrower = {} 
+    borrower = {},
+    entry= {}
 }) {
     let message = '';
 
@@ -62,8 +62,16 @@ function ReportMessage({
                         (${borrower.email || "Unknown Borrower Email"}) request for ${borrower.bookID || "Unknown Book ID"} ${borrower.bookTitle || "Unknown Book Title"}.`;
             break;
         case 'return':
-            message = `Book Returned---${user.role || "Unknown"} User, ${user.name || "Unknown Name"} (${user.email || "Unknown Email"}), has received ${entry.bookID || "Unknown Book ID"} ${entry.bookTitle || "Unknown Book Title"} 
-          from ${entry.user || "Unknown Borrower"} (${entry.email || "Unknown Borro wer Email"}). The total late fee is: ${enrty.lateFee} PHP.`;
+            message = `Book Returned---${role || "Unknown"} User, ${user || "Unknown Name"} (${email || "Unknown Email"}), has received ${entry.bookID || "Unknown Book ID"} ${entry.bookTitle || "Unknown Book Title"} 
+            from ${entry.user || "Unknown Borrower"} (${entry.email || "Unknown Borro wer Email"}). The total late fee is: ${entry.lateFee} PHP.`;
+            break;
+        case 'accepted-message':
+            message = `Your Reservation Request for ${borrower.bookTitle || "Unknown Book Title"} has been ACCEPTED! Please pick up the book before ${borrower.borrowDate || "Unknown Date"}.
+            Failure to pick up the book will terminate your reservation.`;
+            break;
+        case 'rejected-message':
+            message = `Your Reservation Request for ${borrower.bookTitle || "Unknown Book Title"} has been REJECTED! Reservation rejection is often caused due to a prior a reservation taking precedence. 
+            You may request for reservation again when the book is available again.`;
             break;
         default:
             message = "Unknown report type.";
