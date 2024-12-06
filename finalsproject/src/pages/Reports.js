@@ -10,13 +10,15 @@ const Reports = ({ logList, setLogList }) => {
 
   // Role-based filtering logic
   const filteredLogs = logList.filter((log) => {
+    const logContainsReservation = log.activity && log.activity.toString().includes("Your Reservation Request for");
+    
     // Admin can view all logs
     if (user.role === "Admin") {
       return true;
     }
     // Librarian can view logs for Borrower and Librarian roles
     if (user.role === "Librarian") {
-      return log.role === "Borrower" || log.role === "Librarian";
+      return log.role === "Borrower" && !logContainsReservation || log.role === "Librarian";
     }
     // Borrower can view only their own logs
     if (user.role === "Borrower") {

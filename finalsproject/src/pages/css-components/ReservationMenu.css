@@ -41,11 +41,23 @@
   }
   
   .reservation-card {
-    background: linear-gradient(to top, #6a11cb, #2575fc);
+    background: linear-gradient(to top, #3d2d3e, #28344d);
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #c1bcbc;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .reservation-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+
+  .reservation-card-focused {
+    background: linear-gradient(to top, #6a11cb, #2575fc); 
     color: white;
+    pointer-events: auto;
   }
   
   .button-group {
